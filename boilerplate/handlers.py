@@ -1060,6 +1060,17 @@ class ContactHandler(BaseHandler):
     def form(self):
         return forms.ContactForm(self)
 
+       
+class CategoriesHandler():
+    
+    #Handler for Category
+
+    def get(self):
+    # Sends the vistor to the categories page
+
+        return self.render_template('categories.html', **params)
+    
+
 
 class EditProfileHandler(BaseHandler):
     """
