@@ -60,7 +60,7 @@
                 <a class="brand" href="/">{{ app_name }}</a>
                 <div class="nav-collapse">
                     <ul class="nav pull-right">
-                        <li><a href="https://github.com/coto/gae-boilerplate" target="_blank"><span class="icon-inbox" ></span> {% trans %}Source Code{% endtrans %}</a></li>
+                        <!--<li><a href="https://github.com/coto/gae-boilerplate" target="_blank"><span class="icon-inbox" ></span> {% trans %}Source Code{% endtrans %}</a></li>-->
                         {% if locale_iso %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -143,6 +143,7 @@
                 {% block subnavbar %}
                 <div class="subnav">
                     <ul>
+                        <li{% if path == uri_for("categories") %} class="active"{% endif %}><a href="{{ uri_for("categories") }}">{% trans %}Categories{% endtrans %}</a></li>
                         <li{% if path == uri_for("contact") %} class="active"{% endif %}><a href="{{ uri_for("contact") }}">{% trans %}Contact{% endtrans %}</a></li>
                         {% if not user_id %}
                         <li{% if path == uri_for("register") %} class="active"{% endif %}><a href="{{ uri_for("register") }}">{% trans %}Sign Up{% endtrans %}</a></li>
@@ -166,7 +167,7 @@
 
             {% block footer %}
             <footer>
-                {% trans %}Google App Engine Boilerplate is released under the{% endtrans %} <a href="http://www.gnu.org/licenses/gpl-3.0.html" target="_blank">LGPL</a>
+                <!--{% trans %}Google App Engine Boilerplate is released under the{% endtrans %} <a href="http://www.gnu.org/licenses/gpl-3.0.html" target="_blank">LGPL</a>-->
             </footer>
             {% endblock %}
         </div><!-- /content -->
