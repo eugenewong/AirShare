@@ -1,4 +1,4 @@
-<p>Hello <strong>{{username}}</strong>,</p>
+<p>Hello <strong>{{username}}</strong>!</p>
 
 <p>
 You just have registered in {{ app_name }} as @{{username}}. In order to activate your account,
