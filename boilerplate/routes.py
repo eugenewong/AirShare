@@ -21,6 +21,7 @@ _routes = [
     RedirectRoute('/activation/<user_id>/<token>', handlers.AccountActivationHandler, name='account-activation', strict_slash=True),
     RedirectRoute('/resend/<user_id>/<token>', handlers.ResendActivationEmailHandler, name='resend-account-activation', strict_slash=True),
     RedirectRoute('/contact/', handlers.ContactHandler, name='contact', strict_slash=True),
+    #RedirectRoute('/categories/', handlers.CategoryHandler, name='category', strict_slash=True)
     RedirectRoute('/settings/profile', handlers.EditProfileHandler, name='edit-profile', strict_slash=True),
     RedirectRoute('/settings/password', handlers.EditPasswordHandler, name='edit-password', strict_slash=True),
     RedirectRoute('/settings/email', handlers.EditEmailHandler, name='edit-email', strict_slash=True),
