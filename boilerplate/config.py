@@ -92,9 +92,9 @@ config = {
     'send_mail_developer': False,
 
     # fellas' list
-    'developers': (
-        ('Santa Klauss', 'snowypal@northpole.com'),
-    ),
+    #'developers': (
+    #    ('Santa Klauss', 'snowypal@northpole.com'),
+    #),
 
     # If true, it will write in datastore a log of every email sent
     'log_email': True,

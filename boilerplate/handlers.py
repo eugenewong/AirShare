@@ -1061,14 +1061,14 @@ class ContactHandler(BaseHandler):
         return forms.ContactForm(self)
 
        
-class CategoriesHandler():
+class CategoriesHandler(BaseHandler):
     
     #Handler for Category
 
     def get(self):
-    # Sends the vistor to the categories page
-
-        return self.render_template('categories.html', **params)
+        # Sends the vistor to the categories page
+        
+        return self.render_template('categories.html')
     
 
 
