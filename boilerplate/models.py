@@ -1,5 +1,7 @@
 from webapp2_extras.appengine.auth.models import User
 from google.appengine.ext import ndb
+from google.appengine.ext import blobstore
+upload_url = blobstore.create_upload_url('/upload')
 
 
 class User(User):
@@ -21,7 +23,7 @@ class User(User):
     #: User Last Name
     last_name = ndb.StringProperty()
     #: User email
-    email = ndb.StringProperty()
+    email = ndb.StringProperty(required=True)
     #: Hashed password. Only set for own authentication.
     # Not required because third party authentication
     # doesn't use password.
@@ -76,6 +78,15 @@ class User(User):
             else:
                 result['unused'].append(v)
         return result
+
+class Picture(ndb.Model):
+    # All pictures that a User has uploaded
+    title = ndb.StringProperty(required=True)
+    description = ndb.StringProperty(required=True)
+    blobKey = ndb.BlobKeyProperty(required=True)
+    servingUrl = ndb.StringProperty()
+    created = ndb.DateTimeProperty(auto_now_add=True)
+    user = ndb.KeyProperty(kind=User)
 
 
 class LogVisit(ndb.Model):
