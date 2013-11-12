@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [Google App Engine Boilerplate](http://appengine.beecoss.com) [![Build Status](https://secure.travis-ci.org/coto/gae-boilerplate.png)](http://travis-ci.org/coto/gae-boilerplate)
 ==============================
 
@@ -185,3 +186,7 @@ these [amazing people](https://github.com/coto/gae-boilerplate/graphs/contributo
 + [f1shear](https://github.com/f1shear)
 + [presveva](https://github.com/presveva)
 + [Sorced-Jim](https://github.com/sorced-Jim)
+=======
+AirShare
+========
+>>>>>>> 324d9b920d13bacc77ae67e6a570305d63c63b8a

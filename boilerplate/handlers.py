@@ -1069,7 +1069,35 @@ class CategoriesHandler(BaseHandler):
         # Sends the vistor to the categories page
         
         return self.render_template('categories.html')
+
+
+class AboutHandler(BaseHandler):
     
+    #Handler for Category
+
+    def get(self):
+        # Sends the vistor to the categories page
+        
+        return self.render_template('about.html')
+
+
+class PoliciesHandler(BaseHandler):
+    
+    #Handler for Category
+
+    def get(self):
+        # Sends the vistor to the categories page
+        
+        return self.render_template('policies.html')
+
+class MyProfileHandler(BaseHandler):
+    
+    # Handler for User's Profile
+
+    def get(self):
+        # Sends the user to the user profile page
+
+        return self.render_template('profile.html')    
 
 
 class EditProfileHandler(BaseHandler):

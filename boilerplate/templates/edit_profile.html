@@ -9,6 +9,7 @@
         <fieldset>
             <form id="form_edit_profile" action="{{ url|safe }}" method="post">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                
                 {{ macros.field(form.username, label=_("Username"), placeholder=_("Enter your")+" "+_("Username"), class="input-xlarge focused required") }}
                 {{ macros.field(form.name, label=_("Name"), placeholder=_("Enter your")+" "+_("Name"), class="input-xlarge focused") }}
                 {{ macros.field(form.last_name, label=_("Last Name"), placeholder=_("Enter your")+" "+_("Last Name"), class="input-xlarge focused") }}
