@@ -3,3 +3,30 @@
 {% block header_title %}
         My Profile
 {% endblock %}
+
+{% block content %}
+	<div id="edit_profile" class="well form-horizontal">
+
+	<form id="form_add_picture" action="/upload" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+		<label> Upload a picture of your item! </label>
+		<input type="file" name="img" id="file_item"><br>
+		Item Name: <input type="text" name="item-name"><br>
+		Description: <input type="text" name="item-description"><br>
+		Price Point: <input type="number" name="item-price" step="0.01" min= "0.00"><br>
+		<input type="submit" name="submit" value="Submit">
+	</form>
+	
+	</div>
+
+	<div id="edit_profile" class="well form-horizontal">
+
+	<!--<div>
+		Your Stuff
+		<ul>
+			<li> Hey </li>
+			<li> Yo </li>
+		</ul>	
+	</div>-->	
+	</div>
+{% endblock %}	
