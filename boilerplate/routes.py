@@ -42,4 +42,9 @@ def add_routes(app):
 _routes.append(RedirectRoute('/categories/', handlers.CategoriesHandler, name='categories', strict_slash=True))
 _routes.append(RedirectRoute('/about/', handlers.AboutHandler, name='about', strict_slash=True))
 _routes.append(RedirectRoute('/policies/', handlers.PoliciesHandler, name='policies', strict_slash=True))
-_routes.append(RedirectRoute('/settings/my-profile', handlers.MyProfileHandler, name='my-profile', strict_slash=True))
+_routes.append(RedirectRoute('/settings/my-profile/', handlers.MyProfileHandler, name='my-profile', strict_slash=True))
+_routes.append(RedirectRoute('/settings/my-profile/upload/', handlers.AddItemHandler, name='add-item', strict_slash=True))
+
+
+
+

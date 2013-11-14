@@ -7,7 +7,7 @@
 {% block content %}
 	<div id="edit_profile" class="well form-horizontal">
 
-	<form id="form_add_picture" action="/upload" method="post" enctype="multipart/form-data">
+	<form id="form_add_picture" action="{{ uri_for("add-item") }}" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 		<label> Upload a picture of your item! </label>
 		<input type="file" name="img" id="file_item"><br>
