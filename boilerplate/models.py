@@ -79,12 +79,13 @@ class User(User):
                 result['unused'].append(v)
         return result
 
-class Picture(ndb.Model):
+class Item(ndb.Model):
     # All pictures that a User has uploaded
     title = ndb.StringProperty(required=True)
     description = ndb.StringProperty(required=True)
-    blobKey = ndb.BlobKeyProperty(required=True)
-    servingUrl = ndb.StringProperty()
+    price = ndb.StringProperty(required=True)
+    itemKey = ndb.KeyProperty()
+    #servingUrl = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
     user = ndb.KeyProperty(kind=User)
 
