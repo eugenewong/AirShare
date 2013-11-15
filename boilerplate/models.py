@@ -84,10 +84,9 @@ class Item(ndb.Model):
     title = ndb.StringProperty(required=True)
     description = ndb.StringProperty(required=True)
     price = ndb.StringProperty(required=True)
-    itemKey = ndb.KeyProperty()
     #servingUrl = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
-    user = ndb.KeyProperty(kind=User)
+    user = ndb.KeyProperty(kind=User, required=True)
 
 
 class LogVisit(ndb.Model):

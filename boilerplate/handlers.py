@@ -1103,14 +1103,14 @@ class MyProfileHandler(BaseHandler):
 class AddItemHandler(BaseHandler):
     
     # Handler for User's Profile
-    
+    """
     def get(self):
         # Returns a simple HTML form for user's profile
 
         if self.user:
             self.redirect_to('/settings/my-profile/upload/')
         return self.render_template('profile.html')
-
+    """    
     def post(self):
         # Sends the user to the user profile page
 
@@ -1119,10 +1119,14 @@ class AddItemHandler(BaseHandler):
         item.description = self.request.get("item-description")
         item.price = self.request.get("item-price")
         user_info = models.User.get_by_id(long(self.user_id))
-        item.user = user_info.username
+        item.user = user_info.key
         item.put()
-        self.response.write(user_info)
-        #self.redirect('/settings/my-profile')           
+        #self.response.write(user_info)
+        #self.redirect('/settings/my-profile')
+        #items = models.Item.user(self.user_id) 
+        allItems = models.Item.query()
+        userItems = allItems.filter(models.Item.user == user_info.key)
+        self.render_template('profile.html', uploadedItems = userItems, added = True)          
 
 
 class EditProfileHandler(BaseHandler):

@@ -7,7 +7,7 @@
 {% block content %}
 	<div id="edit_profile" class="well form-horizontal">
 
-	<form id="form_add_picture" action="{{ uri_for("add-item") }}" method="post" enctype="multipart/form-data">
+	<form id="form_add_picture" action="{{ uri_for("add-item") }}" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 		<label> Upload a picture of your item! </label>
 		<input type="file" name="img" id="file_item"><br>
@@ -21,12 +21,18 @@
 
 	<div id="edit_profile" class="well form-horizontal">
 
-	<!--<div>
+	{% set items = uploadedItems %}
+	{% set yes = added %}
+	<div>
 		Your Stuff
 		<ul>
-			<li> Hey </li>
-			<li> Yo </li>
+			{% if yes == True %}
+				{% for i in items %}
+					<li >{{ i }}</li>
+				{% endfor %}
+			{% endif %}
+
 		</ul>	
-	</div>-->	
+	</div>	
 	</div>
 {% endblock %}	
