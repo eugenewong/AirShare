@@ -25,7 +25,8 @@
 	{% set yes = added %}
 	<div>
 		Your Stuff
-		
+		<br>
+		[Click refresh if your item does not immediately appear below]
 		<ul>
 			{% if yes == True %}
 				You currently have {{ items.count() }} items!
@@ -36,7 +37,6 @@
 					<li >Description: {{ i.description }}</li>
 					<li >Price: ${{ i.price }}</li>
 					<form action="{{ uri_for("edit-item-inter") }}">
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 						<input type="hidden" name="item-to-edit" value="{{ i.key.urlsafe() }}">
     					<input type="submit" value="Edit Item">
 					</form>

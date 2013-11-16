@@ -1121,13 +1121,9 @@ class AddItemHandler(BaseHandler):
         user_info = models.User.get_by_id(long(self.user_id))
         item.user = user_info.key
         item.put()
-        #self.response.write(user_info)
-        #self.redirect('/settings/my-profile')
-        #items = models.Item.user(self.user_id) 
         allItems = models.Item.query()
         userItems = allItems.filter(models.Item.user == user_info.key)
-        itemNames = userItems.fetch(projection=["title"])
-        self.render_template('profile.html', uploadedItems = itemNames, added = True)
+        self.render_template('profile.html', uploadedItems = userItems, added = True)
 
 
 class EditItemIntermediaryHandler(BaseHandler):
@@ -1136,24 +1132,49 @@ class EditItemIntermediaryHandler(BaseHandler):
 
     def get(self):
         # Sends the vistor to the edit item page
-        user_info = models.User.get_by_id(long(self.user_id))
         item_to_change = self.request.get("item-to-edit")
-        allItems = models.Item.query()
-        userItems = allItems.filter(models.Item.user == user_info.key)
         key = ndb.Key(urlsafe=item_to_change)
         old_item = key.get()
-        return self.render_template('edit_item.html', item_to_edit = old_item)                  
+        self.render_template('edit_item.html', item_to_edit = old_item)                  
 
 
 class EditItemHandler(BaseHandler):
     
     #Handler for editing a User's items
 
-    def get(self):
-        # Sends the vistor to the edit item page
-        #user_info = models.User.get_by_id(long(self.user_id))
-        item_to_change = self.request.get("item-to-edit")
-        return self.render_template('edit_item.html', item_to_edit = item_to_change) 
+    def post(self):
+        # Edits the item's data
+        item_to_change = self.request.get("old-item-key")
+        key = ndb.Key(urlsafe=item_to_change)
+        old_item = key.get()
+        old_item.title = self.request.get("new-item-name")
+        old_item.description = self.request.get("new-item-description")
+        old_item.price = self.request.get("new-item-price")
+        old_item.put()
+
+        user_info = models.User.get_by_id(long(self.user_id))
+        allItems = models.Item.query()
+        userItems = allItems.filter(models.Item.user == user_info.key)
+        self.render_template('profile.html', uploadedItems = userItems, added = True)
+
+
+class DeleteItemHandler(BaseHandler):
+    
+    #Handler for deleting a User's items
+
+    def post(self):
+        # Edits the item's data
+        item_to_delete = self.request.get('delete-key')
+        key = ndb.Key(urlsafe=item_to_delete)
+        old_item = key.get()
+        old_item.delete()
+
+        self.response.write(old_item)
+
+        user_info = models.User.get_by_id(long(self.user_id))
+        allItems = models.Item.query()
+        userItems = allItems.filter(models.Item.user == user_info.key)
+        self.render_template('profile.html', uploadedItems = userItems, added = True)
 
 
 class EditProfileHandler(BaseHandler):
