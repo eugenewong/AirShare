@@ -6,5 +6,16 @@
 
 {% block content %}
 
+	{% set item = item_to_edit %}
+		
+		<form id="form_edit_item" action="{{ uri_for("edit-item") }}" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+		<label> Upload a new picture of your item! </label>
+		<input type="file" name="new-img" id="file_item"><br>
+		Item Name: <input type="text" name="new-item-name" value="{{ item.title }}" required><br>
+		Description: <input type="text" name="new-item-description" value="{{ item.description }}" required><br>
+		Price Point: <input type="number" name="new-item-price" step="0.01" min= "0.00" value="{{ item.price }}" required><br>
+		<input type="submit" name="submit" value="Submit">
+	</form>
 
 {% endblock %}

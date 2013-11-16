@@ -26,6 +26,8 @@ from google.appengine.runtime import apiproxy_errors
 from github import github
 from linkedin import linkedin
 
+from google.appengine.ext import ndb
+
 # local application/library specific imports
 import models
 import forms as forms
@@ -1073,20 +1075,20 @@ class CategoriesHandler(BaseHandler):
 
 class AboutHandler(BaseHandler):
     
-    #Handler for Category
+    #Handler for About
 
     def get(self):
-        # Sends the vistor to the categories page
+        # Sends the vistor to the about page
         
         return self.render_template('about.html')
 
 
 class PoliciesHandler(BaseHandler):
     
-    #Handler for Category
+    #Handler for Policies
 
     def get(self):
-        # Sends the vistor to the categories page
+        # Sends the vistor to the policy page
         
         return self.render_template('policies.html')
 
@@ -1128,15 +1130,30 @@ class AddItemHandler(BaseHandler):
         self.render_template('profile.html', uploadedItems = itemNames, added = True)
 
 
-class EditItemHandler(BaseHandler):
+class EditItemIntermediaryHandler(BaseHandler):
     
-    #Handler for Category
+    #Intermediary Handler for editing a User's items
 
     def get(self):
-        # Sends the vistor to the categories page
+        # Sends the vistor to the edit item page
         user_info = models.User.get_by_id(long(self.user_id))
-        item_to_edit = self.request.get("item-to-edit")
-        return self.render_template('edit_item.html')                  
+        item_to_change = self.request.get("item-to-edit")
+        allItems = models.Item.query()
+        userItems = allItems.filter(models.Item.user == user_info.key)
+        key = ndb.Key(urlsafe=item_to_change)
+        old_item = key.get()
+        return self.render_template('edit_item.html', item_to_edit = old_item)                  
+
+
+class EditItemHandler(BaseHandler):
+    
+    #Handler for editing a User's items
+
+    def get(self):
+        # Sends the vistor to the edit item page
+        #user_info = models.User.get_by_id(long(self.user_id))
+        item_to_change = self.request.get("item-to-edit")
+        return self.render_template('edit_item.html', item_to_edit = item_to_change) 
 
 
 class EditProfileHandler(BaseHandler):
