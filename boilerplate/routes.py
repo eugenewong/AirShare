@@ -46,5 +46,5 @@ _routes.append(RedirectRoute('/settings/my-profile/', handlers.MyProfileHandler,
 _routes.append(RedirectRoute('/settings/my-profile/upload/', handlers.AddItemHandler, name='add-item', handler_method='post', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/edit-item/inter/', handlers.EditItemIntermediaryHandler, name='edit-item-inter', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/edit-item/', handlers.EditItemHandler, name='edit-item', handler_method='post', strict_slash=True))
-_routes.append(RedirectRoute('/settings/my-profile/delete-item/', handlers.DeleteItemHandler, name='delete-item', handler_method='get', strict_slash=True))
+_routes.append(RedirectRoute('/settings/my-profile/delete-item/', handlers.DeleteItemHandler, name='delete-item', handler_method='post', strict_slash=True))
 

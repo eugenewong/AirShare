@@ -26,7 +26,7 @@
 	<div>
 		Your Stuff
 		<br>
-		[Click refresh if your item does not immediately appear below]
+		<!--[Click refresh if your item does not immediately appear below]-->
 		<ul>
 			{% if yes == True %}
 				You currently have {{ items.count() }} items!
@@ -39,6 +39,10 @@
 					<form action="{{ uri_for("edit-item-inter") }}">
 						<input type="hidden" name="item-to-edit" value="{{ i.key.urlsafe() }}">
     					<input type="submit" value="Edit Item">
+					</form>
+					<form action="{{ uri_for("delete-item") }}">
+						<input type="hidden" name="item-to-delete" value="{{ i.key.urlsafe() }}">
+    					<input type="submit" value="Delete Item">
 					</form>
 				{% endfor %}
 			{% endif %}

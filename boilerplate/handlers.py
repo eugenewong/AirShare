@@ -1164,18 +1164,17 @@ class DeleteItemHandler(BaseHandler):
 
     def post(self):
         # Edits the item's data
-        item_to_delete = self.request.get('delete-key')
+        item_to_delete = self.request.get('item-to-delete')
         key = ndb.Key(urlsafe=item_to_delete)
         old_item = key.get()
-        old_item.delete()
-
-        self.response.write(old_item)
-
+        old_item.key.delete()
+    
+        
         user_info = models.User.get_by_id(long(self.user_id))
         allItems = models.Item.query()
         userItems = allItems.filter(models.Item.user == user_info.key)
         self.render_template('profile.html', uploadedItems = userItems, added = True)
-
+        
 
 class EditProfileHandler(BaseHandler):
     """
