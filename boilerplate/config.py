@@ -33,7 +33,7 @@ config = {
 
     # contact page email settings
     'contact_sender': "PUT_SENDER_EMAIL_HERE",
-    'contact_recipient': "PUT_RECIPIENT_EMAIL_HERE",
+    'contact_recipient': "eugenewong@berkeley.edu",
 
     # Password AES Encryption Parameters
     # aes_key must be only 16 (*AES-128*), 24 (*AES-192*), or 32 (*AES-256*) bytes (characters) long.

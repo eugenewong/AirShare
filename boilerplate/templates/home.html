@@ -3,13 +3,34 @@
 {% block header_title_lead %}{% endblock %}
 
 {% block content %}
-
+    
+    {% set yes = hasUserContent %}
     {% if user_id %}
+
+            {% if yes == True %}
+                {% set items = siteItems %}
+                {% for i in items %}
+                    <br>
+                    <li >Title: {{ i.title }}</li>
+                    <li >Description: {{ i.description }}</li>
+                    <li >Price: ${{ i.price }}</li>
+                    <li >User: {{ i.username }}</li>
+                {% endfor %}
+            {% endif %}
 
     {% else %}
     <div class="row">
         <div class="span9">
-
+            {% if yes == True %}
+                {% set items = siteItems %}
+                {% for i in items %}
+                    <br>
+                    <li >Title: {{ i.title }}</li>
+                    <li >Description: {{ i.description }}</li>
+                    <li >Price: ${{ i.price }}</li>
+                    <li >User: {{ i.username }}</li>
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="span3 auth-at-home">
             <form id="form_login_user" action="{{ uri_for("login") }}" method="post">

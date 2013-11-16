@@ -29,8 +29,11 @@
 		<!--[Click refresh if your item does not immediately appear below]-->
 		<ul>
 			{% if yes == True %}
-				You currently have {{ items.count() }} items!
-				
+				{% if items.count() == 1%}
+					You currently have {{ items.count() }} item!
+				{% else %}
+					You currently have {{ items.count() }} items!
+				{% endif %}
 				{% for i in items %}
 					<br>
 					<li >Title: {{ i.title }}</li>

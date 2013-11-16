@@ -1120,6 +1120,7 @@ class AddItemHandler(BaseHandler):
         item.price = self.request.get("item-price")
         user_info = models.User.get_by_id(long(self.user_id))
         item.user = user_info.key
+        item.username = user_info.username
         item.put()
         allItems = models.Item.query()
         userItems = allItems.filter(models.Item.user == user_info.key)
@@ -1163,7 +1164,7 @@ class DeleteItemHandler(BaseHandler):
     #Handler for deleting a User's items
 
     def post(self):
-        # Edits the item's data
+        # Delete's the given item
         item_to_delete = self.request.get('item-to-delete')
         key = ndb.Key(urlsafe=item_to_delete)
         old_item = key.get()
@@ -1620,6 +1621,10 @@ class HomeRequestHandler(RegisterBaseHandler):
 
     def get(self):
         """ Returns a simple HTML form for home """
-        params = {}
-        return self.render_template('home.html', **params)
+        allItems = models.Item.query()
+        hasItems = False
+        if allItems.count() > 0:
+            hasItems = True
+        return self.render_template('home.html', siteItems = allItems, hasUserContent = hasItems)
+
 
