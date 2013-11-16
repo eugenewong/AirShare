@@ -25,10 +25,21 @@
 	{% set yes = added %}
 	<div>
 		Your Stuff
+		
 		<ul>
 			{% if yes == True %}
+				You currently have {{ items.count() }} items!
+				
 				{% for i in items %}
-					<li >{{ i }}</li>
+					<br>
+					<li >Title: {{ i.title }}</li>
+					<li >Description: {{ i.description }}</li>
+					<li >Price: ${{ i.price }}</li>
+					<form action="{{ uri_for("edit-item") }}">
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+						<input type="hidden" name="item-to-edit" value="{{ i }}">
+    					<input type="submit" value="Edit Item">
+					</form>
 				{% endfor %}
 			{% endif %}
 

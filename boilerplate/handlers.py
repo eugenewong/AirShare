@@ -1092,25 +1092,23 @@ class PoliciesHandler(BaseHandler):
 
 class MyProfileHandler(BaseHandler):
     
-    # Handler for User's Profile
+    # Handler for a User's profile
 
     def get(self):
         # Sends the user to the user profile page
-
+        user_info = models.User.get_by_id(long(self.user_id))
+        allItems = models.Item.query()
+        userItems = allItems.filter(models.Item.user == user_info.key)
+        #itemNames = userItems.fetch(projection=["title"])
+        if userItems.count() > 0:
+            return self.render_template('profile.html', uploadedItems = userItems, added = True)
         return self.render_template('profile.html')  
 
 
 class AddItemHandler(BaseHandler):
     
-    # Handler for User's Profile
-    """
-    def get(self):
-        # Returns a simple HTML form for user's profile
-
-        if self.user:
-            self.redirect_to('/settings/my-profile/upload/')
-        return self.render_template('profile.html')
-    """    
+    # Handler for adding an item to a User's database
+    
     def post(self):
         # Sends the user to the user profile page
 
@@ -1126,7 +1124,19 @@ class AddItemHandler(BaseHandler):
         #items = models.Item.user(self.user_id) 
         allItems = models.Item.query()
         userItems = allItems.filter(models.Item.user == user_info.key)
-        self.render_template('profile.html', uploadedItems = userItems, added = True)          
+        itemNames = userItems.fetch(projection=["title"])
+        self.render_template('profile.html', uploadedItems = itemNames, added = True)
+
+
+class EditItemHandler(BaseHandler):
+    
+    #Handler for Category
+
+    def get(self):
+        # Sends the vistor to the categories page
+        user_info = models.User.get_by_id(long(self.user_id))
+        item_to_edit = self.request.get("item-to-edit")
+        return self.render_template('edit_item.html')                  
 
 
 class EditProfileHandler(BaseHandler):

@@ -44,7 +44,7 @@ _routes.append(RedirectRoute('/about/', handlers.AboutHandler, name='about', str
 _routes.append(RedirectRoute('/policies/', handlers.PoliciesHandler, name='policies', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/', handlers.MyProfileHandler, name='my-profile', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/upload/', handlers.AddItemHandler, name='add-item', handler_method='post', strict_slash=True))
-
+_routes.append(RedirectRoute('/settings/my-profile/edit-item', handlers.EditItemHandler, name='edit-item', strict_slash=True))
 
 
 
