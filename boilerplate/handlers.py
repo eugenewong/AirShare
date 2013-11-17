@@ -1199,9 +1199,10 @@ class ViewProfileHandler(BaseHandler):
             userItems = allItems.filter(models.Item.user == user_info.key)
             return self.render_template('public_profile.html', user = name, items = userItems)
         else:
-            tempItems = allItems.filter(models.Item.username == user_info.username)
-            userItems = allItems.filter(models.Item.user == tempItems.get().key)
-        return self.render_template('public_profile.html', user = name, items = userItems)
+            tempItems = allItems.filter(models.Item.username == name)
+            #sample = tempItems.get()
+            #userItems = allItems.filter(models.Item.user == sample.key)
+        return self.render_template('public_profile.html', user = name, items = tempItems)
 
 
 class EditProfileHandler(BaseHandler):

@@ -29,7 +29,7 @@
                     <li >Title: {{ i.title }}</li>
                     <li >Description: {{ i.description }}</li>
                     <li >Price: ${{ i.price }}</li>
-                    <li >User: {{ i.username }}</li>
+                    <li >User: <a href="{{ uri_for("view-profile", username = i.username) }} "> {{ i.username }} </a> </li>
                 {% endfor %}
             {% endif %}
         </div>
