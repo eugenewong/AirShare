@@ -1193,16 +1193,17 @@ class ViewProfileHandler(BaseHandler):
     def get(self, username):
         # Sends the vistor to the profile page
         name = username
-        user_info = models.User.get_by_id(long(self.user_id))
         allItems = models.Item.query()
-        if user_info.username == name:
-            userItems = allItems.filter(models.Item.user == user_info.key)
-            return self.render_template('public_profile.html', user = name, items = userItems)
+        if self.user:
+            user_info = models.User.get_by_id(long(self.user_id))
+            if user_info.username == name:
+                userItems = allItems.filter(models.Item.user == user_info.key)
+                return self.render_template('public_profile.html', user = name, items = userItems)
         else:
             tempItems = allItems.filter(models.Item.username == name)
             #sample = tempItems.get()
             #userItems = allItems.filter(models.Item.user == sample.key)
-        return self.render_template('public_profile.html', user = name, items = tempItems)
+            return self.render_template('public_profile.html', user = name, items = tempItems)
 
 
 class EditProfileHandler(BaseHandler):
