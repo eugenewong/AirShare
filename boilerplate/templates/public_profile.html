@@ -1,0 +1,17 @@
+{% extends base_layout %}
+
+{% block header_title %}
+    {% set name = user%}
+    {{name}}
+{% endblock %}
+
+{% block content %}
+	{% set addedItems = items%}
+	{% for i in addedItems %}
+		Added Stuff:	           
+        <li >Title: {{ i.title }}</li>
+        <li >Description: {{ i.description }}</li>
+        <li >Asking Price: ${{ i.price }}</li>
+
+	{% endfor %}
+{% endblock %}

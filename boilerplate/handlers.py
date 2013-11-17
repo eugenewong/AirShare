@@ -1126,7 +1126,7 @@ class AddItemHandler(BaseHandler):
             item.put()
             allItems = models.Item.query()
             userItems = allItems.filter(models.Item.user == user_info.key)
-            self.render_template('profile.html', uploadedItems = userItems, added = True)
+            return self.render_template('profile.html', uploadedItems = userItems, added = True)
         self.redirect_to('home')        
 
 
@@ -1140,7 +1140,7 @@ class EditItemIntermediaryHandler(BaseHandler):
             item_to_change = self.request.get("item-to-edit")
             key = ndb.Key(urlsafe=item_to_change)
             old_item = key.get()
-            self.render_template('edit_item.html', item_to_edit = old_item)
+            return self.render_template('edit_item.html', item_to_edit = old_item)
         self.redirect_to('home')                  
 
 
@@ -1162,7 +1162,7 @@ class EditItemHandler(BaseHandler):
             user_info = models.User.get_by_id(long(self.user_id))
             allItems = models.Item.query()
             userItems = allItems.filter(models.Item.user == user_info.key)
-            self.render_template('profile.html', uploadedItems = userItems, added = True)
+            return self.render_template('profile.html', uploadedItems = userItems, added = True)
         self.redirect_to('home')
 
 
@@ -1182,9 +1182,27 @@ class DeleteItemHandler(BaseHandler):
             user_info = models.User.get_by_id(long(self.user_id))
             allItems = models.Item.query()
             userItems = allItems.filter(models.Item.user == user_info.key)
-            self.render_template('profile.html', uploadedItems = userItems, added = True)
+            return self.render_template('profile.html', uploadedItems = userItems, added = True)
         self.redirect_to('home')
-        
+
+
+class ViewProfileHandler(BaseHandler):
+    
+    #Handler for public profiles
+
+    def get(self, username):
+        # Sends the vistor to the profile page
+        name = username
+        user_info = models.User.get_by_id(long(self.user_id))
+        allItems = models.Item.query()
+        if user_info.username == name:
+            userItems = allItems.filter(models.Item.user == user_info.key)
+            return self.render_template('public_profile.html', user = name, items = userItems)
+        else:
+            tempItems = allItems.filter(models.Item.username == user_info.username)
+            userItems = allItems.filter(models.Item.user == tempItems.get().key)
+        return self.render_template('public_profile.html', user = name, items = userItems)
+
 
 class EditProfileHandler(BaseHandler):
     """

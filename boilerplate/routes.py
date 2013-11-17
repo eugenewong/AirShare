@@ -7,6 +7,8 @@ RedirectRoute: http://webapp-improved.appspot.com/api/webapp2_extras/routes.html
 from webapp2_extras.routes import RedirectRoute
 import handlers
 
+VALID_USERNAME_REGEXP = "^(\w+([\-\.])?\w*)$"
+
 secure_scheme = 'https'
 
 _routes = [
@@ -47,4 +49,4 @@ _routes.append(RedirectRoute('/settings/my-profile/upload/', handlers.AddItemHan
 _routes.append(RedirectRoute('/settings/my-profile/edit-item/inter/', handlers.EditItemIntermediaryHandler, name='edit-item-inter', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/edit-item/', handlers.EditItemHandler, name='edit-item', handler_method='post', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/delete-item/', handlers.DeleteItemHandler, name='delete-item', handler_method='post', strict_slash=True))
-
+_routes.append(RedirectRoute('/profile/<username>', handlers.ViewProfileHandler, name='view-profile', strict_slash=True))

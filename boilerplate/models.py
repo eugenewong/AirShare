@@ -85,6 +85,7 @@ class Item(ndb.Model):
     description = ndb.StringProperty(required=True)
     price = ndb.StringProperty(required=True)
     username = ndb.StringProperty()
+    picture = ndb.BlobProperty()
     #servingUrl = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
     user = ndb.KeyProperty(kind=User, required=True)

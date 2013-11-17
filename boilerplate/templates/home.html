@@ -6,7 +6,7 @@
     
     {% set yes = hasUserContent %}
     {% if user_id %}
-
+        Stuff to rent:
             {% if yes == True %}
                 {% set items = siteItems %}
                 {% for i in items %}
@@ -14,13 +14,14 @@
                     <li >Title: {{ i.title }}</li>
                     <li >Description: {{ i.description }}</li>
                     <li >Price: ${{ i.price }}</li>
-                    <li >User: {{ i.username }}</li>
+                    <li >User: <a href="{{ uri_for("view-profile", username = i.username) }} "> {{ i.username }} </a> </li>
                 {% endfor %}
             {% endif %}
 
     {% else %}
     <div class="row">
         <div class="span9">
+            Stuff to rent:
             {% if yes == True %}
                 {% set items = siteItems %}
                 {% for i in items %}
