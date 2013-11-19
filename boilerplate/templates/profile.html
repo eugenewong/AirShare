@@ -1,14 +1,14 @@
 {% extends base_layout %}
 
 {% block header_title %}
-        My Profile
+        My Items
 {% endblock %}
 
 {% block content %}
-
-	{% set items = uploadedItems %}
+	
+	
 	<div id="edit_profile" class="well form-horizontal">
-		<a href="{{ uri_for("view-profile", username = items.get().username) }} "> View Your Public Profile </a>	
+		
 	
 	<form id="form_add_picture" action="{{ uri_for("add-item") }}" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
@@ -26,12 +26,14 @@
 
 
 	{% set yes = added %}
+
 	<div>
 		Your Stuff
 		<br>
 		<!--[Click refresh if your item does not immediately appear below]-->
 		<ul>
 			{% if yes == True %}
+				{% set items = uploadedItems %}
 				{% if items.count() == 1%}
 					You currently have {{ items.count() }} item!
 				{% else %}

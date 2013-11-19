@@ -1,5 +1,7 @@
 {% extends base_layout %}
 
+{% set contact = address%}
+
 {% block header_title %}
     {% set name = user%}
     {{name}}
@@ -7,11 +9,15 @@
 
 {% block content %}
 	{% set addedItems = items%}
+	Added Stuff:
 	{% for i in addedItems %}
-		Added Stuff:	           
+		<br>	           
         <li >Title: {{ i.title }}</li>
         <li >Description: {{ i.description }}</li>
         <li >Asking Price: ${{ i.price }}</li>
-
 	{% endfor %}
+
+	
+	<br>
+	Contact this user: {{contact}}
 {% endblock %}

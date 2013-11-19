@@ -17,7 +17,7 @@ class User(User):
     updated = ndb.DateTimeProperty(auto_now=True)
     #: User defined unique name, also used as key_name.
     # Not used by OpenID
-    username = ndb.StringProperty()
+    username = ndb.StringProperty(required=True)
     #: User Name
     name = ndb.StringProperty()
     #: User Last Name
@@ -89,6 +89,7 @@ class Item(ndb.Model):
     #servingUrl = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
     user = ndb.KeyProperty(kind=User, required=True)
+    email = ndb.StringProperty()
 
 
 class LogVisit(ndb.Model):

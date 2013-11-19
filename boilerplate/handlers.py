@@ -1105,7 +1105,7 @@ class MyProfileHandler(BaseHandler):
             #itemNames = userItems.fetch(projection=["title"])
             if userItems.count() > 0:
                 return self.render_template('profile.html', uploadedItems = userItems, added = True)
-            return self.render_template('profile.html')
+            return self.render_template('profile.html', uploadedItems = userItems, added = False)
         self.redirect_to('home')  
 
 
@@ -1123,6 +1123,7 @@ class AddItemHandler(BaseHandler):
             user_info = models.User.get_by_id(long(self.user_id))
             item.user = user_info.key
             item.username = user_info.username
+            item.email = user_info.email
             item.put()
             allItems = models.Item.query()
             userItems = allItems.filter(models.Item.user == user_info.key)
@@ -1198,9 +1199,11 @@ class ViewProfileHandler(BaseHandler):
             user_info = models.User.get_by_id(long(self.user_id))
             if user_info.username == name:
                 userItems = allItems.filter(models.Item.user == user_info.key)
-                return self.render_template('public_profile.html', user = name, items = userItems)
+                return self.render_template('public_profile.html', user = name, items = userItems, address = user_info.email)
+        allUsers = models.User.query()
+        tempUser = allUsers.filter(models.User.username == name)
         tempItems = allItems.filter(models.Item.username == name)
-        return self.render_template('public_profile.html', user = name, items = tempItems)
+        return self.render_template('public_profile.html', user = name, items = tempItems, address = tempUser.get().email)
 
 
 class EditProfileHandler(BaseHandler):
