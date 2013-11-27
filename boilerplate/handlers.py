@@ -1106,7 +1106,7 @@ class MyProfileHandler(BaseHandler):
             if userItems.count() > 0:
                 return self.render_template('profile.html', uploadedItems = userItems, added = True)
             return self.render_template('profile.html', uploadedItems = userItems, added = False)
-        self.redirect_to('home')  
+        self.redirect_to('register')  
 
 
 class AddItemHandler(BaseHandler):

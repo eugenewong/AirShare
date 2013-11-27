@@ -141,9 +141,10 @@
                 {% block subnavbar %}
                 <div class="subnav">
                     <ul>
-                        <li{% if path == uri_for("categories") %} class="active"{% endif %}><a href="{{ uri_for("categories") }}">{% trans %}Categories{% endtrans %}</a></li>
+                        <!--<li{% if path == uri_for("categories") %} class="active"{% endif %}><a href="{{ uri_for("categories") }}">{% trans %}Categories{% endtrans %}</a></li>-->
+                        <li{% if path == uri_for("my-profile") %} class="active"{% endif %}><a href="{{ uri_for("my-profile") }}">{% trans %}Post an Item!{% endtrans %}</a></li>
                         <li{% if path == uri_for("about") %} class="active"{% endif %}><a href="{{ uri_for("about") }}">{% trans %}About{% endtrans %}</a></li>
-                        <li{% if path == uri_for("policies") %} class="active"{% endif %}><a href="{{ uri_for("policies") }}">{% trans %}Policies{% endtrans %}</a></li>
+                        <!--<li{% if path == uri_for("policies") %} class="active"{% endif %}><a href="{{ uri_for("policies") }}">{% trans %}Policies{% endtrans %}</a></li>-->
                         <li{% if path == uri_for("contact") %} class="active"{% endif %}><a href="{{ uri_for("contact") }}">{% trans %}Contact{% endtrans %}</a></li>
                         {% if not user_id %}
                         <li{% if path == uri_for("register") %} class="active"{% endif %}><a href="{{ uri_for("register") }}">{% trans %}Sign Up{% endtrans %}</a></li>
