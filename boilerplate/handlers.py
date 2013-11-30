@@ -1212,6 +1212,46 @@ class EmailUserHandler(BaseHandler):
     #Handler for users emailing other users
 
     def post(self, username):
+
+        from google.appengine.api import mail, app_identity
+        
+        if self.user:
+            user_info = models.User.get_by_id(long(self.user_id))
+            name = username
+            allUsers = models.User.query()
+            tempUser = allUsers.filter(models.User.username == name)
+            to = tempUser.get().email
+            subject = self.request.get("email-subject")
+            body = user_info.email + " just sent you a message through AirShareBeta: " + self.request.get("email-body")
+            app_id = app_identity.get_application_id()
+            sender = "AirShareBeta <no-reply@%s.appspotmail.com>" % (app_id)
+
+            if self.app.config['log_email']:
+                try:
+                    logEmail = models.LogEmail(
+                        sender=sender,
+                        to=to,
+                        subject=subject,
+                        body=body,
+                        when=utils.get_date_time("datetimeProperty")
+                    )
+                    logEmail.put()
+                except (apiproxy_errors.OverQuotaError, BadValueError):
+                    logging.error("Error saving Email Log in datastore")
+
+            try:
+                message = mail.EmailMessage()
+                message.sender = sender
+                message.to = to
+                message.subject = subject
+                message.html = body
+                message.send()
+            except Exception, e:
+                logging.error("Error sending email: %s" % e)
+        self.redirect_to('home')
+
+    """
+    def post(self, username):
         # Emails a user from the item owner's profile page
         if self.user:
             user_info = models.User.get_by_id(long(self.user_id))
@@ -1225,6 +1265,7 @@ class EmailUserHandler(BaseHandler):
             message.body = emailBody
             message.send()
             self.redirect_to('home')
+    """
 
 class EditProfileHandler(BaseHandler):
     """
