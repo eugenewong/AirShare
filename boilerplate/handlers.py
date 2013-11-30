@@ -27,6 +27,7 @@ from github import github
 from linkedin import linkedin
 
 from google.appengine.ext import ndb
+from google.appengine.api import mail
 
 # local application/library specific imports
 import models
@@ -1205,6 +1206,25 @@ class ViewProfileHandler(BaseHandler):
         tempItems = allItems.filter(models.Item.username == name)
         return self.render_template('public_profile.html', user = name, items = tempItems, address = tempUser.get().email)
 
+
+class EmailUserHandler(BaseHandler):
+    
+    #Handler for users emailing other users
+
+    def post(self, username):
+        # Emails a user from the item owner's profile page
+        if self.user:
+            user_info = models.User.get_by_id(long(self.user_id))
+            name = username
+            allUsers = models.User.query()
+            tempUser = allUsers.filter(models.User.username == name)
+            emailHeader = self.request.get("email-subject")
+            emailBody = self.request.get("email-body")
+            message = mail.EmailMessage(sender = user_info.email, subject = emailHeader)
+            message.to = tempUser.get().email
+            message.body = emailBody
+            message.send()
+            self.redirect_to('home')
 
 class EditProfileHandler(BaseHandler):
     """

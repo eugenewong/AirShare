@@ -34,6 +34,7 @@
             {% endif %}
         </div>
         <div class="span3 auth-at-home">
+            
             <form id="form_login_user" action="{{ uri_for("login") }}" method="post">
                 <fieldset class="well">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
@@ -59,7 +60,7 @@
                             <a href="{{ uri_for("password-reset") }}">{% trans %}Forgot your password?{% endtrans %}</a>
                         </label>
                     </div>
-                    {{ macros.federated_login(provider_info, provider_uris, enable_federated_login) }}
+                    <!--{{ macros.federated_login(provider_info, provider_uris, enable_federated_login) }}-->
                 </fieldset>
             </form>
 

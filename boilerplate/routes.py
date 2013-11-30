@@ -50,3 +50,4 @@ _routes.append(RedirectRoute('/settings/my-profile/edit-item/inter/', handlers.E
 _routes.append(RedirectRoute('/settings/my-profile/edit-item/', handlers.EditItemHandler, name='edit-item', handler_method='post', strict_slash=True))
 _routes.append(RedirectRoute('/settings/my-profile/delete-item/', handlers.DeleteItemHandler, name='delete-item', handler_method='post', strict_slash=True))
 _routes.append(RedirectRoute('/profile/<username>', handlers.ViewProfileHandler, name='view-profile', strict_slash=True))
+_routes.append(RedirectRoute('/profile/<username>/message', handlers.EmailUserHandler, name='email-user', strict_slash=True))

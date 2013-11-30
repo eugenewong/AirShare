@@ -1,9 +1,9 @@
 {% extends base_layout %}
-
-{% set contact = address%}
+{% set name = user %}
+{% set contact = address %}
 
 {% block header_title %}
-    {% set name = user%}
+    
     {{name}}
 {% endblock %}
 
@@ -19,5 +19,19 @@
 
 	
 	<br>
-	Contact this user: {{contact}}
+	<!--Contact this user: {{contact}}-->
+	
+	{% if user_id %}
+	<form id="form_contact_user" action="{{ uri_for("email-user", username = name) }}" method="POST">
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+		<label> Email this user: </label>
+		Subject: <br> 
+		<input type="text" name="email-subject" required><br>
+		<!--Body: <input type="text" name="email-body" required><br>-->
+		Body: <br>
+		<textarea name="email-body" form="form_contact_user" rows="8" cols="40" required> </textarea> <br>
+		<input type="submit" name="submit" value="Send Email">
+	</form>
+	{% endif %}
+
 {% endblock %}
