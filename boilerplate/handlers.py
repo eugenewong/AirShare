@@ -1217,10 +1217,7 @@ class EmailUserHandler(BaseHandler):
         
         if self.user:
             user_info = models.User.get_by_id(long(self.user_id))
-            name = username
-            allUsers = models.User.query()
-            tempUser = allUsers.filter(models.User.username == name)
-            to = tempUser.get().email
+            to = self.request.get("email-to")
             subject = self.request.get("email-subject")
             body = user_info.email + " just sent you a message through AirShareBeta: " + self.request.get("email-body")
             app_id = app_identity.get_application_id()
@@ -1250,22 +1247,6 @@ class EmailUserHandler(BaseHandler):
                 logging.error("Error sending email: %s" % e)
         self.redirect_to('home')
 
-    """
-    def post(self, username):
-        # Emails a user from the item owner's profile page
-        if self.user:
-            user_info = models.User.get_by_id(long(self.user_id))
-            name = username
-            allUsers = models.User.query()
-            tempUser = allUsers.filter(models.User.username == name)
-            emailHeader = self.request.get("email-subject")
-            emailBody = self.request.get("email-body")
-            message = mail.EmailMessage(sender = user_info.email, subject = emailHeader)
-            message.to = tempUser.get().email
-            message.body = emailBody
-            message.send()
-            self.redirect_to('home')
-    """
 
 class EditProfileHandler(BaseHandler):
     """
