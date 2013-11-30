@@ -62,7 +62,7 @@ class EmailMixin(BaseForm):
     email = fields.TextField(_('Email'), [validators.Required(),
                                           validators.Length(min=8, max=FIELD_MAXLENGTH, message=_(
                                                     "Field must be between %(min)d and %(max)d characters long.")),
-                                          validators.regexp(utils.EMAIL_REGEXP, message=_('Invalid email address.'))])
+                                          validators.regexp(utils.EMAIL_REGEXP, message=_('Invalid email address. Must be a berkeley.edu email address.'))])
 
 
 # ==== Forms ====

@@ -60,7 +60,6 @@
                 <a class="brand" href="/">{{ app_name }}</a>
                 <div class="nav-collapse">
                     <ul class="nav pull-right">
-                        <!--<li><a href="https://github.com/coto/gae-boilerplate" target="_blank"><span class="icon-inbox" ></span> {% trans %}Source Code{% endtrans %}</a></li>-->
                         {% if locale_iso %}
                         <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -143,9 +142,9 @@
                     <ul>
                         <!--<li{% if path == uri_for("categories") %} class="active"{% endif %}><a href="{{ uri_for("categories") }}">{% trans %}Categories{% endtrans %}</a></li>-->
                         <li{% if path == uri_for("my-profile") %} class="active"{% endif %}><a href="{{ uri_for("my-profile") }}">{% trans %}Post an Item!{% endtrans %}</a></li>
-                        <li{% if path == uri_for("about") %} class="active"{% endif %}><a href="{{ uri_for("about") }}">{% trans %}About{% endtrans %}</a></li>
-                        <!--<li{% if path == uri_for("policies") %} class="active"{% endif %}><a href="{{ uri_for("policies") }}">{% trans %}Policies{% endtrans %}</a></li>-->
-                        <li{% if path == uri_for("contact") %} class="active"{% endif %}><a href="{{ uri_for("contact") }}">{% trans %}Contact{% endtrans %}</a></li>
+                        <!--<li{% if path == uri_for("about") %} class="active"{% endif %}><a href="{{ uri_for("about") }}">{% trans %}About{% endtrans %}</a></li>
+                        <li{% if path == uri_for("policies") %} class="active"{% endif %}><a href="{{ uri_for("policies") }}">{% trans %}Policies{% endtrans %}</a></li>
+                        <li{% if path == uri_for("contact") %} class="active"{% endif %}><a href="{{ uri_for("contact") }}">{% trans %}Contact{% endtrans %}</a></li>-->
                         {% if not user_id %}
                         <li{% if path == uri_for("register") %} class="active"{% endif %}><a href="{{ uri_for("register") }}">{% trans %}Sign Up{% endtrans %}</a></li>
                         <li{% if path == uri_for("password-reset") %} class="active"{% endif %}><a href="{{ uri_for("password-reset") }}">{% trans %}Forgot your password?{% endtrans %}</a></li>
@@ -168,7 +167,10 @@
 
             {% block footer %}
             <footer>
-
+                    
+                        <div class="footer-item"{% if path == uri_for("about") %} class="active"{% endif %}><a href="{{ uri_for("about") }}">{% trans %}About{% endtrans %}</a></div>
+                        <div class="footer-item"{% if path == uri_for("contact") %} class="active"{% endif %}><a href="{{ uri_for("contact") }}">{% trans %}Contact{% endtrans %}</a></div>
+                      
             </footer>
             {% endblock %}
         </div><!-- /content -->

@@ -17,11 +17,11 @@ class User(User):
     updated = ndb.DateTimeProperty(auto_now=True)
     #: User defined unique name, also used as key_name.
     # Not used by OpenID
-    username = ndb.StringProperty(required=True)
+    username = ndb.StringProperty()
     #: User Name
-    name = ndb.StringProperty()
+    name = ndb.StringProperty(required=True)
     #: User Last Name
-    last_name = ndb.StringProperty()
+    last_name = ndb.StringProperty(required=True)
     #: User email
     email = ndb.StringProperty(required=True)
     #: Hashed password. Only set for own authentication.
