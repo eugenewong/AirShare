@@ -8,6 +8,7 @@
     {% if user_id %}
     <div id="edit_profile" class="well form-horizontal">
         Stuff to rent:
+        <br>
             {% if yes == True %}
                 {% set items = siteItems %}
                 {% for i in items %}
@@ -43,7 +44,7 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
                     <div class="control-group">
                         <label class="controls">
-                            <input class="focused required" name="username" id="l_username" type="text" placeholder="{% trans %}Username or Email{% endtrans %}">
+                            <input class="focused required" name="username" id="l_username" type="text" placeholder="{% trans %}Username{% endtrans %}">
                         </label>
                     </div>
                     <div class="control-group">

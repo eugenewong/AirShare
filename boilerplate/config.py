@@ -65,8 +65,8 @@ config = {
     'github_client_secret': 'PUT_YOUR_GITHUB_CLIENT_SECRET_HERE',
 
     # get your own recaptcha keys by registering at http://www.google.com/recaptcha/
-    'captcha_public_key': "PUT_YOUR_RECAPCHA_PUBLIC_KEY_HERE",
-    'captcha_private_key': "PUT_YOUR_RECAPCHA_PRIVATE_KEY_HERE",
+    'captcha_public_key': "6Lf3HusSAAAAAFEpGIbj8PHdyenVEyllOSVGW5Mo",
+    'captcha_private_key': "6Lf3HusSAAAAAFrghYJQcSxjiPAa0iqnhHclHnPO",
 
     # Leave blank "google_analytics_domain" if you only want Analytics code
     'google_analytics_domain': "YOUR_PRIMARY_DOMAIN (e.g. google.com)",
@@ -89,7 +89,7 @@ config = {
     'base_layout': 'base.html',
 
     # send error emails to developers
-    'send_mail_developer': False,
+    'send_mail_developer': True,
 
     # fellas' list
     #'developers': (

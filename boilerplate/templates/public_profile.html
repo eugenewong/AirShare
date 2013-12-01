@@ -9,19 +9,22 @@
 
 {% block content %}
 	{% set addedItems = items%}
+	<div id="edit_profile" class="well form-horizontal">
 	Added Stuff:
+	<br>
 	{% for i in addedItems %}
 		<br>	           
         <li >Title: {{ i.title }}</li>
         <li >Description: {{ i.description }}</li>
         <li >Asking Price: ${{ i.price }}</li>
 	{% endfor %}
-
+	</div>
 	
 	<br>
 	<!--Contact this user: {{contact}}-->
 	
 	{% if user_id %}
+	<div id="edit_profile" class="well form-horizontal">
 	<form id="form_contact_user" action="{{ uri_for("email-user", username = name) }}" method="POST">
 		<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="email-to" value="{{ contact }}">
@@ -32,6 +35,7 @@
 		<textarea name="email-body" form="form_contact_user" rows="8" cols="40" required></textarea> <br>
 		<input type="submit" name="submit" value="Send Email">
 	</form>
+	</div>
 	{% endif %}
 
 {% endblock %}
