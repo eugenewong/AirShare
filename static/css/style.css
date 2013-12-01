@@ -14,7 +14,28 @@ dt,dd {
 .home_bp{background:transparent url(../img/logo.png) top center no-repeat;padding-top:20em;text-align:center}.home_bp h1{font-size:1.6em}.home_bp p{font-size:1.2em}
 
 .footer-item {
-   display: inline-block;
-   padding: 10px;
-   color: #336699;
+   	display: inline-block;
+   	padding: 10px;
+   	color: #336699;
+}
+
+.picture {
+   	display: inline-block;
+   	padding: 10px;
+   
+}
+
+.name-pos {
+	display: inline-block;
+   	width: 250px;
+   	height: 250px;
+   	padding: 10px;
+   
+}
+
+.title {
+   	margin-left: auto;
+   	margin-right: auto;
+   	text-align: center;
+   	padding: 10px;
 }

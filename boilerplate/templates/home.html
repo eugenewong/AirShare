@@ -6,6 +6,7 @@
     
     {% set yes = hasUserContent %}
     {% if user_id %}
+    <div id="edit_profile" class="well form-horizontal">
         Stuff to rent:
             {% if yes == True %}
                 {% set items = siteItems %}
@@ -17,10 +18,11 @@
                     <li >User: <a href="{{ uri_for("view-profile", username = i.username) }} "> {{ i.username }} </a> </li>
                 {% endfor %}
             {% endif %}
-
+    </div>
     {% else %}
     <div class="row">
         <div class="span9">
+            <div id="edit_profile" class="well form-horizontal">
             Stuff to rent:
             {% if yes == True %}
                 {% set items = siteItems %}
@@ -32,6 +34,7 @@
                     <li >User: <a href="{{ uri_for("view-profile", username = i.username) }} "> {{ i.username }} </a> </li>
                 {% endfor %}
             {% endif %}
+        </div>
         </div>
         <div class="span3 auth-at-home">
             
